@@ -1,0 +1,23 @@
+{
+  "name": "email-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andela-ymakanjuola/email-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-ymakanjuola/email-api/issues"
+  },
+  "homepage": "https://github.com/andela-ymakanjuola/email-api",
+  "dependencies": {
+    "express": "^4.12.3"
+  }
+}
