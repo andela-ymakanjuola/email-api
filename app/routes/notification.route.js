@@ -1,19 +1,22 @@
 var express = require('express'),
-    Notification = require('./app/models/notification.model'),
-    router = express.Router();
+    router = express.Router(),
+    bodyParser = require('body-parser'),
+    parseUrlencoded = bodyParser.urlencoded({extended: true}),
+    Notification = require('../models/notification.model');
 
-router.route('/notifications')
+
+router.route('/')
 
   //create a new notification
-  .post(function (request, response) {
-    var Notification = new Notification();
+  .post(parseUrlencoded, function (request, response) {
+    var notification = new Notification();
     
-    Notification.subject = request.body.subject;
-    Notification.content = request.body.content;
-    Notification.date = request.body.date;
-    Notification.read = false;
+    notification.subject = request.body.subject;
+    notification.content = request.body.content;
+    notification.date = Date.now();
+    notification.read = false;
 
-    Notification.save(function(error){
+    notification.save(function(error){
       if(error)
         response.send(error);
       response.json({message: 'Notification posted!'});
@@ -31,8 +34,9 @@ router.route('/notifications')
 
   });
 
-router.route('/notifications/:notification_id')
-
+router.route('/:notification_id')
+  
+  //get a notification
   .get(function (request, response) {
     Notification.findById(request.params.notification_id, function (error, notification) {
       if(error)
@@ -64,3 +68,5 @@ router.route('/notifications/:notification_id')
       response.json({message: 'notification delete!'});
     });
   });
+
+module.exports = router;
