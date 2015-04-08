@@ -11,6 +11,8 @@ module.exports = {
     }
   },
 
+  EMAIL_KEY: process.env.POSTMARK_KEY,
+
   port: process.env.PORT || 3000
 
 };
