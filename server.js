@@ -1,18 +1,24 @@
-var express = require('express'),
-    app = express(),
-    bodyParser = require('body-parser'),
-    mongoose = require('mongoose'), 
-    Notification = require('./app/models/notification.model'),
-    router = require('./app/routes/notification.route');
+var config = require('./app/config/config')
+    mongoose = require('mongoose');
+    
 
 mongoose.connect('mongodb://andela-yinka:andela123@ds029541.mongolab.com:29541/notifications-db');
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+var db = mongoose.connect(config.db[process.env.NODE_ENV].uri, config.db[process.env.NODE_ENV].options, function (err) {
+    if (err) {
+        console.error('Could not connect to MongoDB.');
+        console.log(err);
+    }
+});
+
+mongoose.connection.on('error', function (err) {
+    console.error('MongoDB connection error: ' + err);
+});
 
 
-app.use('/notifications', router);
+var app = require('./app/config/express');
 
-app.listen(3000, function (){
+
+app.listen(process.env.NODE_ENV, function (){
   console.log("something is working...");
 });
