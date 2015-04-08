@@ -6,7 +6,7 @@ var express = require('express'),
 var Notification = require('./app/models/notification.model');
 var router = require('./app/routes/notification.route');
 
-mongoose.connect('mongodb://localhost/notification-db');
+mongoose.connect('mongodb://andela-yinka:andela123@ds029541.mongolab.com:29541/notifications-db');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
