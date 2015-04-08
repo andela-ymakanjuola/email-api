@@ -7,8 +7,7 @@ mongoose.connect(config.db[process.env.NODE_ENV].uri, config.db[process.env.NODE
     
 });
 
-
-var app = require('./app/config/express');
+var app = require('./config/express')();
 
 
 app.listen(config.port, function (){
