@@ -19,5 +19,4 @@ module.exports = {
         console.log("Email sent to: %s", to);
     });
   }
-
 };

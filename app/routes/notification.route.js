@@ -2,74 +2,20 @@ var express = require('express'),
     router = express.Router(),
     bodyParser = require('body-parser'),
     parseUrlencoded = bodyParser.urlencoded({extended: true}),
-    Notification = require('../models/notification.model'),
-    email = require('./email.route');
-
-
+    Notification = require('../controllers/notification.controller');
 
 router.route('/')
 
-  //create a new notification
-  .post(parseUrlencoded, function (request, response) {
-    var notification = new Notification();
-    
-    notification.subject = request.body.subject;
-    notification.content = request.body.content;
-    notification.date = Date.now();
-    notification.read = false;
+  .post(parseUrlencoded, Notification.create) //create a new notification
 
-    notification.save(function(error){
-      if(error)
-        response.send(error);
-      response.json({message: 'Notification posted!'});
-      email.sendMail(notification);
-    });
-
-  })
-
-  //get all notifications
-  .get(function (request, response) {
-    Notification.find(function(error, notifications){
-      if(error)
-        response.send(error);
-      response.json(notifications);
-    });
-
-  });
+  .get(Notification.readAll); //get all notifications
 
 router.route('/:notification_id')
   
-  //get a notification
-  .get(function (request, response) {
-    Notification.findById(request.params.notification_id, function (error, notification) {
-      if(error)
-        response.send(error);
-      response.json(notification);
-    });
-  })
+  .get(Notification.read)  //get a notification
 
-  //update a notification
-  .put(function (request, response) {
-    Notification.findById(request.params.notification_id, function (error, notification) {
-      if(error)
-        response.send(error);
-      notification.read = request.body.read; //update notification
+  .put(Notification.update) //update a notification
 
-      notification.save(function (error) {
-        if (error)
-          response.send(error);
-        response.json({message: 'notification updated'});
-      });
-    });
-  })
-
-  //delete a notification
-  .delete(function (request, response) {
-    Notification.remove({_id: request.params.notification_id}, function (error, notification) {
-      if(error)
-        response.send(error);
-      response.json({message: 'notification delete!'});
-    });
-  });
+  .delete(Notification.delete); //delete a notification
 
 module.exports = router;
