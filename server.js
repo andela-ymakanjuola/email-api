@@ -1,10 +1,9 @@
 var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
-    mongoose = require('mongoose');
-   
-var Notification = require('./app/models/notification.model');
-var router = require('./app/routes/notification.route');
+    mongoose = require('mongoose'), 
+    Notification = require('./app/models/notification.model'),
+    router = require('./app/routes/notification.route');
 
 mongoose.connect('mongodb://andela-yinka:andela123@ds029541.mongolab.com:29541/notifications-db');
 
