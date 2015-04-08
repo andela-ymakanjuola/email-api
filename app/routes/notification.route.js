@@ -2,7 +2,9 @@ var express = require('express'),
     router = express.Router(),
     bodyParser = require('body-parser'),
     parseUrlencoded = bodyParser.urlencoded({extended: true}),
-    Notification = require('../models/notification.model');
+    Notification = require('../models/notification.model'),
+    email = require('./email.route');
+
 
 
 router.route('/')
@@ -20,6 +22,7 @@ router.route('/')
       if(error)
         response.send(error);
       response.json({message: 'Notification posted!'});
+      email.sendMail(notification);
     });
 
   })
