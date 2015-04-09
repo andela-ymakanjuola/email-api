@@ -11,6 +11,7 @@ module.exports = {
     notification.content = request.body.content;
     notification.date = Date.now();
     notification.read = false;
+    notification.sent = false;
 
     notification.save(function(error){
       if(error)
@@ -21,7 +22,7 @@ module.exports = {
   },
 
   readAll: function (request, response) {
-    Notification.find(function(error, notifications){
+    Notification.find(request.query,function(error, notifications){
       if(error)
         response.send(error);
       response.json(notifications);
