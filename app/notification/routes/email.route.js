@@ -11,8 +11,6 @@ module.exports = {
       "TextBody": notification.content
       }, function (err, to) {
         if (err) {
-          notification.sent = false;
-          notification.save()
           console.log(err);
           return;
         }
