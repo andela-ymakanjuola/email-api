@@ -1,7 +1,5 @@
-
-var POSTMARK_KEY = "afd3d32c-0187-4b92-91e2-751fa3e2e96c";
-
-var postmark = require("postmark")(POSTMARK_KEY);
+var config = require('../../../config/config'),
+    postmark = require("postmark")(config.EMAIL_KEY);
 
 
 module.exports = {
@@ -13,9 +11,13 @@ module.exports = {
       "TextBody": notification.content
       }, function (err, to) {
         if (err) {
-            console.log(err);
-            return;
+          notification.sent = false;
+          notification.save()
+          console.log(err);
+          return;
         }
+        notification.sent = true;
+        notification.save()
         console.log("Email sent to: %s", to);
     });
   }
