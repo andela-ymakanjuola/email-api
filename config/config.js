@@ -4,7 +4,7 @@ module.exports = {
       uri: 'mongodb://localhost/notifications-db'
     },
     test: {
-      uri: 'mongodb://localhost/test-db'
+      uri: 'mongodb://localhost/test-notification-db'
     },
     production: {
       uri: 'mongodb://andela-yinka:andela123@ds029541.mongolab.com:29541/notifications-db'
