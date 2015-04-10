@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "export NODE_ENV=test && jasmine-node ./spec/**/*.js --autotest --watch ./app/**/*js --color",
+    "test": "export NODE_ENV=test && jasmine-node ./spec/**/*.js --autotest --color",
     "start": "node server.js"
   },
   "repository": {
