@@ -1,5 +1,5 @@
 var Notification = require('../models/notification.model'),
-    email = require('../routes/email.route');
+    email = require('../controllers/email.controller');
 
 
 module.exports = {
