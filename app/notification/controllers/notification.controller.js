@@ -16,8 +16,8 @@ module.exports = {
     notification.save(function(error){
       if(error)
         response.send(error);
-      response.json({message: 'Notification posted!'});
-      email.sendMail(notification); //send email to user
+      console.log('Notification posted successfully!');
+      email.sendMail(response, notification); //send email to user
     });
   },
 
