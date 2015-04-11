@@ -3,23 +3,25 @@ var config = require('../../../config/config'),
 
 
 module.exports = {
-  sendMail: function (notification) {
+  sendMail: function (response, notification) {
     postmark.send({
       "From": "yinka.makanjuola@andela.co", 
       "To": "yinka.makanjuola@andela.co", 
       "Subject": notification.subject, 
-      "TextBody": notification.content
+      "HtmlBody": notification.content,
+      "TracksOpen": true,
+
       },function (error, to) {
         if (error) {
           console.log(error);
           return;
         }
-        
         notification.update({sent: true},function (error) {
           if (error) {
             console.error(error);
           }
           console.log("Email sent to: %s", to);
+          response.json(to);
         });
     });
   }
