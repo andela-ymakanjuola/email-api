@@ -14,6 +14,7 @@ module.exports = {
       },function (error, to) {
         if (error) {
           console.log(error);
+          response.send(error);
           return;
         }
         notification.update({sent: true},function (error) {
