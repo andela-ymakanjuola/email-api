@@ -20,29 +20,33 @@ describe('Notification model tests:', function () {
   describe('Save Method:', function () {
     it("has a empty subject", function (done) {
       notification.subject = '';
-      console.log('its here');
-      notification.save(function (err) {
-        expect(err).toBeDefined();
-        
+      notification.save(function (error) {
+        expect(error).toBeDefined();
+        done();
       });
-      done();
+      
     });
 
     it('should save the notification', function (done) {
-      notification.save(function(err) {
-        expect(err).toBeNull();
+      notification.save(function (error) {
+        expect(error).toBeNull();
+        if (error){
+          expect(error).toBeDefined();
+          return done(error);
+        }
+        done();
       });
-      done();
     });
   });
 
   afterEach(function (done) {
-    Notification.remove(function (err) {
-      if(err) {
-        console.log(err);
+    Notification.remove(function (error) {
+      if (error){
+        return done(error);
       }
-    });
-    done();
+      done();
+  });
+    
   });
 
 });
