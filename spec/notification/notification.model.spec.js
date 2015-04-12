@@ -17,7 +17,6 @@ describe('Notification model tests:', function () {
     done();
   });
 
-  
   describe('Save Method:', function () {
     it("has a empty subject", function (done) {
       notification.subject = '';
@@ -37,16 +36,13 @@ describe('Notification model tests:', function () {
     });
   });
 
-afterEach(function (done) {
-  Notification.remove(function (err) {
-    if(err) {
-      console.log(err);
-    }
+  afterEach(function (done) {
+    Notification.remove(function (err) {
+      if(err) {
+        console.log(err);
+      }
+    });
+    done();
   });
-  done();
-});
-  
-
-
 
 });
