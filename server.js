@@ -13,3 +13,5 @@ var app = require('./config/express')();
 app.listen(config.port, function (){
   console.log("something is working...");
 });
+
+module.exports = app;
