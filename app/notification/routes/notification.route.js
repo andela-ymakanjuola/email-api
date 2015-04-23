@@ -4,13 +4,13 @@ var express = require('express'),
     parseUrlencoded = bodyParser.urlencoded({extended: true}),
     Notification = require('../controllers/notification.controller');
 
-router.route('/')
+router.route('/:username/notifications')
 
   .post(parseUrlencoded, Notification.create) //create a new notification
 
   .get(Notification.readAll); //get all notifications
 
-router.route('/:notification_id')
+router.route('/:username/notifications/:notification_id')
   
   .get(Notification.read)  //get a notification
 
