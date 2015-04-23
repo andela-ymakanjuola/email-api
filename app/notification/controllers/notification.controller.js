@@ -10,6 +10,7 @@ module.exports = {
     notification.author = request.params.username;
     notification.subject = request.body.subject;
     notification.content = request.body.content;
+    notification.email = request.body.email;
     notification.date = Date.now();
     notification.read = false;
     notification.sent = false;
