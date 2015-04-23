@@ -15,8 +15,9 @@ module.exports = {
     notification.sent = false;
 
     notification.save(function(error){
-      if(error)
+      if(error) {
         response.send(error);
+      }
       console.log('Notification posted successfully!');
       email.sendMail(response, notification); //send email to user
     });
@@ -26,16 +27,18 @@ module.exports = {
 
     request.query.author = request.params.username; //attach author/username to query params before querying db
     Notification.find(request.query,function(error, notifications){
-      if(error)
+      if(error){
         response.send(error);
+      }
       response.json(notifications);
     });
   },
 
   read: function (request, response) {
     Notification.findById(request.params.notification_id, function (error, notification) {
-      if(error)
+      if(error){
         response.send(error);
+      }
       response.json(notification);
     });
   },
@@ -47,8 +50,9 @@ module.exports = {
       notification.read = request.body.read; //update notification
 
       notification.save(function (error) {
-        if (error)
+        if (error){
           response.send(error);
+        }
         response.json({message: 'notification updated'});
       });
     });
@@ -56,8 +60,9 @@ module.exports = {
 
   delete: function (request, response) {
     Notification.remove({_id: request.params.notification_id}, function (error, notification) {
-      if(error)
+      if(error){
         response.send(error);
+      }
       response.json({message: 'notification delete!'});
     });
   }
