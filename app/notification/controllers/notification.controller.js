@@ -23,6 +23,8 @@ module.exports = {
   },
 
   readAll: function (request, response) {
+
+    request.query.author = request.params.username; //attach author/username to query params before querying db
     Notification.find(request.query,function(error, notifications){
       if(error)
         response.send(error);
