@@ -10,7 +10,7 @@ module.exports = function () {
   app.use(bodyParser.json());
 
 
-  app.use('/:username/notifications', router);
+  app.use('/', router);
 
   return app;
 
