@@ -6,7 +6,8 @@ module.exports = {
 
   create: function (request, response) {
     var notification = new Notification();
-    
+
+    notification.author = request.params.username;
     notification.subject = request.body.subject;
     notification.content = request.body.content;
     notification.date = Date.now();
