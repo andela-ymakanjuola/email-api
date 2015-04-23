@@ -6,7 +6,7 @@ module.exports = {
   sendMail: function (response, notification) {
     postmark.send({
       "From": "yinka.makanjuola@andela.co", 
-      "To": "yinka.makanjuola@andela.co", 
+      "To": notification.email, 
       "Subject": notification.subject, 
       "HtmlBody": notification.content,
       "TracksOpen": true,
